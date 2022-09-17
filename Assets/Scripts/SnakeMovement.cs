@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class SnakeMovement : MonoBehaviour
 {
@@ -54,6 +55,11 @@ public class SnakeMovement : MonoBehaviour
 
             GameObject bone = Instantiate(BonePrefab);
             Tails.Add(bone.transform);
+        }
+        else if (collision.gameObject.CompareTag("NoFood"))
+        {
+            Destroy(collision.gameObject);
+            SceneManager.LoadScene(1);
         }
     }
 }
