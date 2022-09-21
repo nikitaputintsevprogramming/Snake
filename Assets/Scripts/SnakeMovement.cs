@@ -5,6 +5,8 @@ using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 public class SnakeMovement : MonoBehaviour
 {
+    [SerializeField] private AudioSource AudioEating;
+    [SerializeField] private ParticleSystem Boom;
     [SerializeField] List<Transform> Tails;
     [Range(0, 3)]
     [SerializeField] float BonesDistance;
@@ -61,6 +63,8 @@ public class SnakeMovement : MonoBehaviour
             Tails.Add(bone.transform);
             count++;
             SetCountText();
+            AudioEating.Play();
+            Boom.Play();
         }
         else if (collision.gameObject.CompareTag("NoFood"))
         {
